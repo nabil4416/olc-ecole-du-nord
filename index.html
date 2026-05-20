@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activités OLC | Langue arabe & culture marocaine</title>
+  <style>
+    :root {
+      --primary: #1f6f5b;
+      --primary-dark: #155142;
+      --secondary: #c9983f;
+      --accent: #f4efe6;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --soft: #f8fafc;
+      --shadow: 0 18px 45px rgba(31, 41, 51, 0.12);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--soft);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(31, 111, 91, 0.22);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+
+    .btn.secondary {
+      background: var(--white);
+      color: var(--primary-dark);
+      border: 1px solid rgba(31, 111, 91, 0.18);
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 86px 0 70px;
+      background:
+        radial-gradient(circle at top left, rgba(201, 152, 63, 0.25), transparent 36%),
+        linear-gradient(135deg, #fffaf0 0%, #eef7f3 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(31, 111, 91, 0.1);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, 4.6rem);
+      line-height: 1.03;
+      letter-spacing: -0.05em;
+      color: #13251f;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #475569;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 18px;
+      border: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--primary-dark);
+      font-size: 1.4rem;
+    }
+
+    .visual-card {
+      position: relative;
+      background: var(--white);
+      padding: 24px;
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(31, 111, 91, 0.1), rgba(201, 152, 63, 0.12));
+      pointer-events: none;
+    }
+
+    .arabic-pattern {
+      position: relative;
+      min-height: 410px;
+      border-radius: 26px;
+      background:
+        linear-gradient(rgba(19, 37, 31, 0.2), rgba(19, 37, 31, 0.35)),
+        url("https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .floating-note {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text);
+      padding: 14px 16px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      font-weight: 700;
+      max-width: 210px;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-title span {
+      color: var(--secondary);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.12;
+      margin-top: 8px;
+      color: #13251f;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin-top: 14px;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      box-shadow: 0 12px 32px rgba(31, 41, 51, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--primary-dark);
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: #13251f;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .portrait-box {
+      border-radius: 32px;
+      min-height: 420px;
+      background:
+        linear-gradient(rgba(31, 111, 91, 0.15), rgba(31, 111, 91, 0.22)),
+        url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .check-list {
+      list-style: none;
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .check-list li {
+      background: var(--soft);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .resources {
+      background: linear-gradient(135deg, #13251f, #1f6f5b);
+      color: var(--white);
+    }
+
+    .resources .section-title h2,
+    .resources .section-title p {
+      color: var(--white);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .resource {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      min-height: 240px;
+      border-radius: 24px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 12px 30px rgba(31, 41, 51, 0.08);
+    }
+
+    .gallery-item.large {
+      grid-row: span 2;
+      min-height: 496px;
+    }
+
+    .cta {
+      background: var(--accent);
+    }
+
+    .cta-box {
+      background: var(--white);
+      border-radius: 34px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .contact-pill {
+      background: var(--soft);
+      padding: 16px;
+      border-radius: 18px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      background: var(--white);
+      border-top: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: var(--primary);
+      color: var(--white);
+      padding: 10px 13px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: 76px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--white);
+        border-radius: 20px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .resource-grid,
+      .contact-info {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.large {
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-stats,
+      .cards,
+      .resource-grid,
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
+        padding: 28px;
+      }
+
+      .arabic-pattern,
+      .portrait-box {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#accueil" class="logo" aria-label="Retour à l'accueil">
+        <span class="logo-mark">OLC</span>
+        <span>Langue arabe & culture marocaine</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#apropos">À propos</a>
+        <a href="#activites">Activités</a>
+        <a href="#ressources">Ressources</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact" class="btn">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">🌍 Programme OLC · Ouverture aux langues et aux cultures</div>
+          <h1>Découvrir une langue, comprendre une culture, grandir avec ouverture.</h1>
+          <p>
+            Des activités pédagogiques modernes pour initier les élèves à la langue arabe,
+            à la culture marocaine et au dialogue interculturel, dans un cadre bienveillant,
+            créatif et adapté à l’école.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#activites" class="btn">Voir les activités</a>
+            <a href="#ressources" class="btn secondary">Ressources parents</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat"><strong>Langue</strong><span>lecture, oral, écriture</span></div>
+            <div class="stat"><strong>Culture</strong><span>patrimoine & valeurs</span></div>
+            <div class="stat"><strong>Numérique</strong><span>quiz, supports, PDF</span></div>
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="arabic-pattern">
+            <div class="floating-note">Supports modernes · QR codes · activités interactives</div>
+            <div>
+              <h3>Un pont entre l’école, les familles et la culture.</h3>
+              <p>Une approche simple, visuelle et accessible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="apropos">
+      <div class="container about-grid">
+        <div class="portrait-box" aria-label="Image représentant une activité scolaire"></div>
+        <div>
+          <div class="section-title">
+            <span>À propos</span>
+            <h2>Un enseignement OLC clair, moderne et utile aux familles.</h2>
+            <p>
+              L’objectif est d’aider les élèves à découvrir la langue arabe et la culture marocaine
+              à travers des activités progressives, motivantes et adaptées à leur âge.
+            </p>
+          </div>
+
+          <ul class="check-list">
+            <li>Approche pédagogique simple, bienveillante et structurée.</li>
+            <li>Supports visuels pour faciliter la compréhension des élèves.</li>
+            <li>Activités culturelles pour développer l’ouverture et la curiosité.</li>
+            <li>Utilisation d’outils numériques : quiz, fiches PDF, présentations, QR codes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="activites">
+      <div class="container">
+        <div class="section-title">
+          <span>Activités</span>
+          <h2>Des activités variées pour apprendre autrement.</h2>
+          <p>
+            Une combinaison entre apprentissage linguistique, découverte culturelle et outils pédagogiques modernes.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">📖</div>
+            <h3>Lecture & écriture</h3>
+            <p>Découverte progressive de l’alphabet arabe, des sons, des mots et des premières phrases.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎨</div>
+            <h3>Culture & créativité</h3>
+            <p>Calligraphie, traditions, contes, fêtes, patrimoine marocain et activités artistiques.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧩</div>
+            <h3>Jeux éducatifs</h3>
+            <p>Quiz, cartes, défis, exercices interactifs et mini-jeux pour apprendre avec plaisir.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>Supports numériques</h3>
+            <p>Fiches PDF, présentations, QR codes et ressources accessibles aux parents.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🤝</div>
+            <h3>Ouverture interculturelle</h3>
+            <p>Activités favorisant le respect, la curiosité et la découverte des cultures.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🏫</div>
+            <h3>Projets avec l’école</h3>
+            <p>Participation possible à des journées des langues, expositions ou projets multiculturels.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources" id="ressources">
+      <div class="container">
+        <div class="section-title">
+          <span>Ressources</span>
+          <h2>Un espace utile pour les parents et les élèves.</h2>
+          <p>
+            Des ressources simples à consulter à la maison pour accompagner les apprentissages.
+          </p>
+        </div>
+
+        <div class="resource-grid">
+          <div class="resource">
+            <h3>Alphabet arabe</h3>
+            <p>Fiches de révision et activités de lecture.</p>
+          </div>
+          <div class="resource">
+            <h3>Exercices PDF</h3>
+            <p>Petites fiches imprimables pour s’entraîner.</p>
+          </div>
+          <div class="resource">
+            <h3>Quiz interactifs</h3>
+            <p>Révisions ludiques via QR code.</p>
+          </div>
+          <div class="resource">
+            <h3>Infos parents</h3>
+            <p>Objectifs, horaires et communication pratique.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galerie">
+      <div class="container">
+        <div class="section-title">
+          <span>Galerie</span>
+          <h2>Quelques traces des apprentissages et projets.</h2>
+          <p>
+            Cette section peut accueillir des photos d’affiches, de travaux d’élèves, d’ateliers ou d’activités culturelles.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item large" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80');"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Une question ? Une activité à organiser ?</h2>
+            <p>
+              Pour toute information concernant les activités OLC, les horaires ou les ressources,
+              vous pouvez me contacter directement.
+            </p>
+
+            <div class="contact-info">
+              <div class="contact-pill">📍 École : à compléter</div>
+              <div class="contact-pill">📧 Email : à compléter</div>
+              <div class="contact-pill">🕒 Horaires : à compléter</div>
+            </div>
+          </div>
+          <a href="mailto:votre.email@example.com" class="btn">Envoyer un email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 · Activités OLC — Langue arabe & culture marocaine · Site éducatif</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+  </script>
+</body>
+</html>
